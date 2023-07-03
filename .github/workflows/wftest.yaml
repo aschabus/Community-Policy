@@ -29,13 +29,12 @@ jobs:
         id: changed_files
         uses: tj-actions/changed-files@v37
         with:
-          separator: "x"
           write_output_files: true
 
       - name: List all changed files
         run: |
           for file in ${{ steps.changed_files.outputs.all_changed_files }}; do
-            echo "$file was changed"
+            echo "$file is one of the changed files"
           done
           #echo ${{ steps.changed_files.outputs.all_changed_files }} >> $TEST_OUTPUTSCA
           #echo "TEST_OUTPUT=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
@@ -57,7 +56,7 @@ jobs:
           
           #$content = Get-Content .\test.txt
           #$content = Get-Content .github\outputs\added_files.txt
-          #Write-Output "***" + $content + "***"
+          Write-Output "***" + $content + "***"
           
           # foreach($line in Get-Content .\test.txt) {
           foreach($line in Get-Content .github\outputs\added_files.txt) {
