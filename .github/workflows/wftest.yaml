@@ -35,13 +35,14 @@ jobs:
             echo "$file was changed"
           done
           #echo ${{ steps.changed_files.outputs.all_changed_files }} >> $TEST_OUTPUTSCA
-          echo "TEST_Output=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
+          echo "TEST_OUTPUT=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
       
       - name: test changes
         id: test-files
         run: |
           Write-Output "hier moechte ich checken"
           Write-Output ">>>" + $TEST_OUTPUT + "<<<"
+          Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
           Write-Output $steps.changed_files.outputs.all_changed_files
           # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
 
