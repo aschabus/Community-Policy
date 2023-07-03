@@ -46,7 +46,7 @@ jobs:
           Write-Output "Believe it's the start"
           Write-Output ${{steps.changed_files.outputs.all_changed_files}}
           Write-Output "Believe it's the end"
-          # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
+          Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
           $files = @(${{ join(steps.changed_files.outputs.all_changed_files, ',') }})
 
