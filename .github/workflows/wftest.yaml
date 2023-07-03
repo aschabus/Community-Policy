@@ -43,5 +43,5 @@ jobs:
                Write-Output "$file was checked"
                .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
             }
-          done
+          }
         shell: pwsh
