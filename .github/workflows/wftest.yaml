@@ -31,7 +31,7 @@ jobs:
         uses: tj-actions/changed-files@v37
 
       - name: Run if any of the listed files above is changed
-        if: steps.changed_files.outputs.any_changed == 'true'
+        if: ${{ steps.changed_files.outputs.any_changed }} == 'true'
         run: |
           foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
           echo "joeh: $file"
