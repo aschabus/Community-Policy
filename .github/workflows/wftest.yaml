@@ -30,6 +30,7 @@ jobs:
         uses: tj-actions/changed-files@v37
         with:
           separator: "x"
+          write_output_files: true
 
       - name: List all changed files
         run: |
@@ -54,11 +55,13 @@ jobs:
           # Write-Output "Believe it's the end"
           # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
-          $content = Get-Content .\test.txt
+          #$content = Get-Content .\test.txt
+          $content = Get-Content .github\outputs\added_files.txt
           Write-Output "***" + $content + "***"
           
-          foreach($line in Get-Content .\test.txt) {
-            $line = $line -replace "$", " "
+          # foreach($line in Get-Content .\test.txt) {
+          foreach($line in Get-Content .github\outputs\added_files.txt) {
+          $line = $line -replace "$", " "
             echo "$line was changed"
             if ($line.Contains("azurepolicy.json")) {
               Write-Host "$line was checked"
