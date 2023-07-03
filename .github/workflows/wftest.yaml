@@ -50,7 +50,11 @@ jobs:
           # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
           foreach($line in Get-Content .\test.txt) {
-            Write-Host $line
+            echo "$line was changed"
+            if ($line -contains "azurepolicy.json") {
+              Write-Host "$line was checked"
+              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $line
+            }
           }
           
           
