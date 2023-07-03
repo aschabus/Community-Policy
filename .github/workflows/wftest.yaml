@@ -38,7 +38,7 @@ jobs:
       - name: test changes
         id: test-files
         run: |
-          Write-Output "hier moechte ich checken")
+          Write-Output "hier moechte ich checken"
           Write-Output steps.changed-files.outputs.all_changed_files
           Write-Output steps.changed-files.outputs.all_changed_files.GetType()
 
