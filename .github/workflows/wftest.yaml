@@ -45,7 +45,8 @@ jobs:
           Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
           # Write-Output "Believe it's the start"
           Write-Output ${{steps.changed_files.outputs.all_changed_files}}
-          $out = ${{steps.changed_files.outputs.all_changed_files}} -replace " ", "$"
+          $out = ${{steps.changed_files.outputs.all_changed_files}}
+          Write-Output $out.GetType()
           # Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
           Write-Output $out | Out-File -FilePath .\test.txt 
           # Write-Output "Believe it's the end"
