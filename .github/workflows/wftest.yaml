@@ -46,7 +46,7 @@ jobs:
           Write-Output ${{steps.changed_files.outputs.all_changed_files}}
           # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
 
-          foreach ( $file in $steps.changed_files.outputs.all_changed_files ) {
+          foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
             # echo "$file was changed"
             if ($file -contains "azurepolicy.json") {
                Write-Host "$file was checked"
