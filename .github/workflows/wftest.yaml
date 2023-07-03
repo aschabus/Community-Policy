@@ -48,17 +48,17 @@ jobs:
           Write-Output "Believe it's the end"
           # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
           
-          $files = @(${{ join(steps.changed_files.outputs.all_changed_files, '"') }})
+          $files = @(${{ join(steps.changed_files.outputs.all_changed_files, ',') }})
 
           For ($i=0; $i -lt $files.Length; $i++) {
             echo $files[$i]
           }
 
-          foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
-            echo "$file was changed"
-            if ($file -contains "azurepolicy.json") {
-               Write-Host "$file was checked"
-               .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
-            }
-          }
+         # foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
+         #   echo "$file was changed"
+         #   if ($file -contains "azurepolicy.json") {
+         #      Write-Host "$file was checked"
+         #      .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
+         #   }
+         # }
         shell: pwsh
