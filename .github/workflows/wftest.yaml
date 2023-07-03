@@ -56,7 +56,8 @@ jobs:
           
           #$content = Get-Content .\test.txt
           #$content = Get-Content .github\outputs\added_files.txt
-          Write-Output "***" + $content + "***"
+          # Write-Output "***" + $content + "***"
+          Write-Output "####################################################################"
           
           # foreach($line in Get-Content .\test.txt) {
           foreach($line in Get-Content .github\outputs\added_files.txt) {
