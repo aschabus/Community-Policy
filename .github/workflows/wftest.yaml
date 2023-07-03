@@ -44,12 +44,15 @@ jobs:
           # Write-Output ">>>" + $TEST_OUTPUT + "<<<"
           Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
           # Write-Output "Believe it's the start"
-          Write-Output ${{steps.changed_files.outputs.all_changed_files}} 
-          Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
+          Write-Output ${{steps.changed_files.outputs.all_changed_files}}
+          $out = ${{steps.changed_files.outputs.all_changed_files}} -replace " ", "$"
+          # Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
+          Write-Output $out | Out-File -FilePath .\test.txt 
           # Write-Output "Believe it's the end"
           # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
           foreach($line in Get-Content .\test.txt) {
+            $line = $line -replace "$", " "
             echo "$line was changed"
             if ($line.Contains("azurepolicy.json")) {
               Write-Host "$line was checked"
