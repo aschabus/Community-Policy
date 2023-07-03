@@ -51,7 +51,7 @@ jobs:
           
           foreach($line in Get-Content .\test.txt) {
             echo "$line was changed"
-            if ($line -contains "azurepolicy.json") {
+            if ($line.Contains("azurepolicy.json")) {
               Write-Host "$line was checked"
               .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $line
             }
