@@ -43,7 +43,7 @@ jobs:
           Write-Output "hier moechte ich checken"
           Write-Output ">>>" + $TEST_OUTPUT + "<<<"
           Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
-          Write-Output $steps.changed_files.outputs.all_changed_files
+          Write-Output ${{steps.changed_files.outputs.all_changed_files}}
           # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
 
           foreach ( $file in $steps.changed_files.outputs.all_changed_files ) {
