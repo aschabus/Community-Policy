@@ -34,7 +34,8 @@ jobs:
           for file in ${{ steps.changed_files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
-          echo ${{ steps.changed_files.outputs.all_changed_files }} >> $TEST_OUTPUTSCA
+          #echo ${{ steps.changed_files.outputs.all_changed_files }} >> $TEST_OUTPUTSCA
+          echo "TEST_Output=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
       
       - name: test changes
         id: test-files
