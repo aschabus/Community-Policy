@@ -32,3 +32,8 @@ jobs:
           for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
+      
+      - uses: actions/checkout@v1
+      
+      - name: test changes
+        run: .\Scripts\Confirm-PolicyDefinitionIsValis.ps1 ${{ steps.changed-files.outputs.all_changed_files }};
