@@ -42,9 +42,9 @@ jobs:
           # foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
           foreach ( $file in $tst ) {
             echo "$file was changed"
-            if ($line.Contains("azurepolicy.json")) {
+            if ($file.Contains("azurepolicy.json")) {
               Write-Host "$file was checked"
-              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $line
+              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
             }
           }
         shell: pwsh
