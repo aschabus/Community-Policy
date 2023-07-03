@@ -54,7 +54,8 @@ jobs:
           # Write-Output "Believe it's the end"
           # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
-          Write-Output "***" + Get-Content .\test.txt + "***"
+          $content = Get-Content .\test.txt
+          Write-Output "***" + $content + "***"
           
           foreach($line in Get-Content .\test.txt) {
             $line = $line -replace "$", " "
