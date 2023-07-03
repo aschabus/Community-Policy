@@ -40,7 +40,7 @@ jobs:
         run: |
           Write-Output "hier moechte ich checken"
           Write-Output steps.changed-files.outputs.all_changed_files
-          Write-Output steps.changed-files.outputs.all_changed_files.GetType()
+          # Write-Output steps.changed-files.outputs.all_changed_files.GetType()
 
           foreach ( $file in ${{ steps.changed-files.outputs.all_changed_files }}) {
             # echo "$file was changed"
