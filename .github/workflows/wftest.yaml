@@ -44,7 +44,7 @@ jobs:
             echo "$file was changed"
             if ($file.Contains("azurepolicy.json")) {
               Write-Host "$file was checked"
-              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
+              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 -FileName $file
             }
           }
         shell: pwsh
