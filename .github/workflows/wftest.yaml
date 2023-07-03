@@ -41,47 +41,51 @@ jobs:
           # echo $tst.GetType()
           # foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
           foreach ( $file in $tst ) {
-          echo "joeh: $file"
+            echo "$file was changed"
+            if ($line.Contains("azurepolicy.json")) {
+              Write-Host "$file was checked"
+              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $line
+            }
           }
         shell: pwsh
 
-      - name: List all changed files
-        run: |
-          for file in ${{ steps.changed_files.outputs.all_changed_files }}; do
-            echo "$file is one of the changed files"
-          done
+      #- name: List all changed files
+      #  run: |
+      #    for file in ${{ steps.changed_files.outputs.all_changed_files }}; do
+      #      echo "$file is one of the changed files"
+      #    done
           #echo ${{ steps.changed_files.outputs.all_changed_files }} >> $TEST_OUTPUTSCA
           #echo "TEST_OUTPUT=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
       
-      - name: test changes
-        id: test-files
-        run: |
-          #Write-Output "hier moechte ich checken"
-          # Write-Output ">>>" + $TEST_OUTPUT + "<<<"
-          #Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
-          # Write-Output "Believe it's the start"
-          #Write-Output ${{steps.changed_files.outputs.all_changed_files}}
-          # $out = ${{steps.changed_files.outputs.all_changed_files}}
-          # Write-Output $out.GetType().Name
-          #Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
-          # Write-Output $out | Out-File -FilePath .\test.txt 
-          # Write-Output "Believe it's the end"
-          # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
+      #- name: test changes
+      #  id: test-files
+      #  run: |
+      #    #Write-Output "hier moechte ich checken"
+      #    # Write-Output ">>>" + $TEST_OUTPUT + "<<<"
+      #    #Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
+      #    # Write-Output "Believe it's the start"
+      #    #Write-Output ${{steps.changed_files.outputs.all_changed_files}}
+      #    # $out = ${{steps.changed_files.outputs.all_changed_files}}
+      #    # Write-Output $out.GetType().Name
+      #    #Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
+      #    # Write-Output $out | Out-File -FilePath .\test.txt 
+      #    # Write-Output "Believe it's the end"
+      #   # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
           #$content = Get-Content .\test.txt
           #$content = Get-Content .github\outputs\added_files.txt
           # Write-Output "***" + $content + "***"
-          Write-Output "####################################################################"
+      #    Write-Output "####################################################################"
           
           # foreach($line in Get-Content .\test.txt) {
-          foreach($line in Get-Content .github\outputs\added_files.txt) {
+      #    foreach($line in Get-Content .github\outputs\added_files.txt) {
           #$line = $line -replace "$", " "
-            echo "$line was changed"
-            if ($line.Contains("azurepolicy.json")) {
-              Write-Host "$line was checked"
-              .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $line
-            }
-          }
+      #      echo "$line was changed"
+      #      if ($line.Contains("azurepolicy.json")) {
+      #        Write-Host "$line was checked"
+      #        .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $line
+      #      }
+      #    }
           
           
           # $files = @(${{ join(steps.changed_files.outputs.all_changed_files, ',') }})
@@ -97,4 +101,4 @@ jobs:
           #      .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
           #   }
           # }
-        shell: pwsh
+      #  shell: pwsh
