@@ -37,3 +37,4 @@ jobs:
       
       - name: test changes
         run: .\Scripts\Confirm-PolicyDefinitionIsValis.ps1 ${{ steps.changed-files.outputs.all_changed_files }};
+        shell: powershell
