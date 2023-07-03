@@ -47,6 +47,12 @@ jobs:
           Write-Output ${{steps.changed_files.outputs.all_changed_files}}
           Write-Output "Believe it's the end"
           # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
+          
+          $files = @(${{ join(steps.changed_files.outputs.all_changed_files, '"') }})
+
+          For ($i=0; $i -lt $files.Length; $i++) {
+            echo $files[$i]
+          }
 
           foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
             echo "$file was changed"
