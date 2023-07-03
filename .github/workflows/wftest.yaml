@@ -23,13 +23,20 @@ jobs:
       pull-requests: read
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+      
       
       - name: Get changed files
         id: changed_files
         uses: tj-actions/changed-files@v37
-        with:
-          write_output_files: true
+
+      - name: Run if any of the listed files above is changed
+        if: steps.changed_files.outputs.any_changed == 'true'
+        run: |
+          foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
+          echo "joeh: $file"
+          }
+        shell: pwsh
 
       - name: List all changed files
         run: |
