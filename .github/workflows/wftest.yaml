@@ -36,5 +36,12 @@ jobs:
       - uses: actions/checkout@v1
       
       - name: test changes
-        run: .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 ${{ steps.changed-files.outputs.all_changed_files }};
+        run: |
+          foreach ( $file in ${{ steps.changed-files.outputs.all_changed_files }}) {
+            Write-Output "$file was changed"
+            if ($file -contains "azurepolicy.json) {
+               Write-Output "$file was checked"
+               .\Scripts\Confirm-PolicyDefinitionIsValid.ps1 $file
+            }
+          done
         shell: pwsh
