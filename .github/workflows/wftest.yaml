@@ -38,30 +38,30 @@ jobs:
             echo "$file was changed"
           done
           #echo ${{ steps.changed_files.outputs.all_changed_files }} >> $TEST_OUTPUTSCA
-          echo "TEST_OUTPUT=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
+          #echo "TEST_OUTPUT=${{ steps.changed_files.outputs.all_changed_files }}" >> $GITHUB_ENV
       
       - name: test changes
         id: test-files
         run: |
-          Write-Output "hier moechte ich checken"
+          #Write-Output "hier moechte ich checken"
           # Write-Output ">>>" + $TEST_OUTPUT + "<<<"
-          Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
+          #Write-Output ">>>>" + $env:TEST_OUTPUT + "<<<<"
           # Write-Output "Believe it's the start"
-          Write-Output ${{steps.changed_files.outputs.all_changed_files}}
+          #Write-Output ${{steps.changed_files.outputs.all_changed_files}}
           # $out = ${{steps.changed_files.outputs.all_changed_files}}
           # Write-Output $out.GetType().Name
-          Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
+          #Write-Output ${{steps.changed_files.outputs.all_changed_files}} | Out-File -FilePath .\test.txt 
           # Write-Output $out | Out-File -FilePath .\test.txt 
           # Write-Output "Believe it's the end"
           # Write-Output ${{steps.changed_files.outputs.all_changed_files}}.GetType()
           
           #$content = Get-Content .\test.txt
-          $content = Get-Content .github\outputs\added_files.txt
-          Write-Output "***" + $content + "***"
+          #$content = Get-Content .github\outputs\added_files.txt
+          #Write-Output "***" + $content + "***"
           
           # foreach($line in Get-Content .\test.txt) {
           foreach($line in Get-Content .github\outputs\added_files.txt) {
-          $line = $line -replace "$", " "
+          #$line = $line -replace "$", " "
             echo "$line was changed"
             if ($line.Contains("azurepolicy.json")) {
               Write-Host "$line was checked"
