@@ -24,12 +24,12 @@ jobs:
 
     steps:
       - name: Get changed files
-        id: changed-files
+        id: changed_files
         uses: tj-actions/changed-files@v37
 
       - name: List all changed files
         run: |
-          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+          for file in ${{ steps.changed_files.outputs.all_changed_files }}; do
             echo "$file was changed"
           done
       
@@ -39,10 +39,10 @@ jobs:
         id: test-files
         run: |
           Write-Output "hier moechte ich checken"
-          Write-Output $steps.changed-files.outputs.all_changed_files
-          # Write-Output steps.changed-files.outputs.all_changed_files.GetType()
+          Write-Output $steps.changed_files.outputs.all_changed_files
+          # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
 
-          foreach ( $file in $steps.changed-files.outputs.all_changed_files ) {
+          foreach ( $file in $steps.changed_files.outputs.all_changed_files ) {
             # echo "$file was changed"
             if ($file -contains "azurepolicy.json") {
                Write-Host "$file was checked"
