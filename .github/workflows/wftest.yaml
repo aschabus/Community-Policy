@@ -30,7 +30,7 @@ jobs:
         id: changed_files
         uses: tj-actions/changed-files@v37
         with:
-          separator: "&"
+          separator: "§"
 
       - name: Run if any of the listed files above is changed
         if: ${{ steps.changed_files.outputs.any_changed }} == 'true'
