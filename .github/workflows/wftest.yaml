@@ -36,9 +36,11 @@ jobs:
         if: ${{ steps.changed_files.outputs.any_changed }} == 'true'
         run: |
           $tst = "${{ steps.changed_files.outputs.all_changed_files }}" #| Out-String
+          $tst = $tst.Split("$")
           echo "joeh2: $tst"
           # echo $tst.GetType()
-          foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
+          # foreach ( $file in ${{ steps.changed_files.outputs.all_changed_files }} ) {
+          foreach ( $file in $tst ) {
           echo "joeh: $file"
           }
         shell: pwsh
