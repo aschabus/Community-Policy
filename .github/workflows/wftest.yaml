@@ -41,7 +41,7 @@ jobs:
         id: test-files
         run: |
           Write-Output "hier moechte ich checken"
-          Write-Output ">>>" + $env:TEST_OUTPUT + "<<<"
+          Write-Output ">>>" + $TEST_OUTPUT + "<<<"
           Write-Output $steps.changed_files.outputs.all_changed_files
           # Write-Output steps.changed_files.outputs.all_changed_files.GetType()
 
